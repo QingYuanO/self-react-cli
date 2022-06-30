@@ -10,7 +10,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 module.exports = (env, options) => {
   const isProd = options.mode === "production";
-  return {
+  const config = {
     mode: "development",
     entry: {
       main: "./src/index.js",
@@ -59,5 +59,8 @@ module.exports = (env, options) => {
       //是否直接打开网址
       open: true,
     },
+    devtool: "source-map",
   };
+
+  return config;
 };

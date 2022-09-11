@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkself_react_cli=self.webpackChunkself_react_cli||[]).push([[179],{224:(e,t,r)=>{var l=r(294);function c(){return console.log(1),l.createElement("div",{className:" bg-red-300"},"test111")}(0,r(745).s)(document.getElementById("root")).render(l.createElement(c,null))}},e=>{e.O(0,[745],(()=>{return t=224,e(e.s=t);var t}));e.O()}]);
+//# sourceMappingURL=main.1fd6e2f70f.js.map

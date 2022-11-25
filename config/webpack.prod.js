@@ -1,7 +1,11 @@
 const path = require('path');
+//https://webpack.docschina.org/plugins/eslint-webpack-plugin/
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+//https://webpack.docschina.org/plugins/html-webpack-plugin/#root
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+//https://webpack.docschina.org/plugins/copy-webpack-plugin#root
 const CopyPlugin = require('copy-webpack-plugin');
+//https://webpack.docschina.org/plugins/mini-css-extract-plugin#root
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');

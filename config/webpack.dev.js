@@ -1,8 +1,6 @@
 const path = require('path');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const common = require('./webpack.common');
 
 const { merge } = require('webpack-merge');

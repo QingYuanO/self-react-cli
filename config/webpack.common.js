@@ -8,24 +8,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { IS_DIV } = require('./constant');
 
-console.log(IS_DIV);
-
 const getStyleLoaders = preProcessor => {
   return [
-    !IS_DIV ? MiniCssExtractPlugin.loader : "style-loader",
+    !IS_DIV ? MiniCssExtractPlugin.loader : 'style-loader',
     'css-loader',
-    !IS_DIV
-      ? {
-          loader: 'postcss-loader',
-          options: {
-            postcssOptions: {
-              plugins: [
-                'postcss-preset-env', // 能解决大多数样式兼容性问题
-              ],
-            },
-          },
-        }
-      : null,
+    {
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          plugins: [
+            'postcss-preset-env', // 能解决大多数样式兼容性问题
+          ],
+        },
+      },
+    },
+
     preProcessor,
   ].filter(Boolean);
 };

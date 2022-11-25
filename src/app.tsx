@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import './app.css';
+import React from 'react';
+
+
+import './app.less';
+import Home from './pages/Home';
+
 export default function App() {
-  const [a, setA] = useState(1);
-  useEffect(() => {
-    console.log(a);
-  }, [a]);
-  return <div className="text-red-300"> test111</div>;
+  return (
+    <div>
+      <Home></Home>
+    </div>
+  );
 }

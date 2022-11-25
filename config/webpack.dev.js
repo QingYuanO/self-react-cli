@@ -6,7 +6,6 @@ const common = require('./webpack.common');
 const { merge } = require('webpack-merge');
 
 module.exports = merge(common, {
-  entry: './src/index.tsx',
   output: {
     path: undefined,
     filename: 'static/js/[name].js',

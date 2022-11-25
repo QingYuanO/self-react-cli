@@ -6,6 +6,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 //https://webpack.docschina.org/plugins/mini-css-extract-plugin#root
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const WebpackBar = require('webpackbar');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 const { IS_DIV } = require('./constant');
 
 const getStyleLoaders = preProcessor => {
@@ -99,5 +102,16 @@ module.exports = {
         },
       ],
     }),
+    //配置webpack打包进度
+    new WebpackBar({
+      name: IS_DIV ? 'run' : 'build',
+      color: IS_DIV ? '#00b2a9' : '#ee6139',
+    }),
+    //编译时进行 typescript 类型检测
+    // new ForkTsCheckerWebpackPlugin({
+    //   typescript: {
+    //     configFile: path.resolve(__dirname, '../tsconfig.json'),
+    //   },
+    // }),
   ],
 };

@@ -25,7 +25,6 @@ const getStyleLoaders = preProcessor => {
         },
       },
     },
-
     preProcessor,
   ].filter(Boolean);
 };
@@ -68,7 +67,7 @@ module.exports = {
           cacheCompression: false,
           plugins: [
             // "@babel/plugin-transform-runtime", // presets中包含了
-            IS_DIV ? 'react-refresh/babel' : '', // 开启js的HMR功能
+            IS_DIV && require.resolve('react-refresh/babel'), // 开启js的HMR功能
           ].filter(Boolean),
         },
       },

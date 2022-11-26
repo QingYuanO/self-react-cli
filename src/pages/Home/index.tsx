@@ -7,14 +7,14 @@ export default function Home() {
     console.log(a);
   }, [a]);
   return (
-    <div className="text-red-300">
+    <div className='text-red-300'>
       <span>1aa</span>
       <Space wrap>
-        <Button type="primary">Primary Button</Button>
+        <Button type='primary'>Primary Button</Button>
         <Button>Default Button</Button>
-        <Button type="dashed">Dashed Button</Button>
-        <Button type="text">Text Button</Button>
-        <Button type="link">Link Button</Button>
+        <Button type='dashed'>Dashed Button</Button>
+        <Button type='text'>Text Button</Button>
+        <Button type='link'>Link Button</Button>
       </Space>
       <Steps
         current={1}

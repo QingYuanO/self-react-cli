@@ -42,14 +42,6 @@ module.exports = merge(common, {
       name: entrypoint => `runtime~${entrypoint.name}`,
     },
   },
-  // 开发服务器
-  // devServer: {
-  //   open: true,
-  //   host: 'localhost',
-  //   port: 3000,
-  //   hot: true,
-  //   compress: true,
-  // },
   mode: 'production',
   devtool: 'source-map',
 });

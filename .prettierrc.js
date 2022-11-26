@@ -3,7 +3,7 @@ module.exports = {
   bracketSpacing: true, // 括号内部不要出现空格
   endOfLine: 'lf', // 行结束符使用 Unix 格式
   jsxBracketSameLine: false, // 在jsx中把'>' 是否单独放一行
-  jsxSingleQuote: false, // jsx 属性使用双引号
+  jsxSingleQuote: true,
   printWidth: 100, // 行宽
   proseWrap: 'preserve', // 换行方式
   semi: true, // 句尾添加分号

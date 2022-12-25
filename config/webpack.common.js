@@ -80,6 +80,7 @@ module.exports = {
     new ESLintWebpackPlugin({
       // 指定检查文件的根目录
       context: path.resolve(__dirname, '../src'),
+      exclude: "node_modules",
       cache: true,
       cacheLocation: path.resolve(__dirname, '..', 'node_modules/.cache/.eslintcache'),
     }),

@@ -1,39 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Space, Steps } from 'antd';
-const description = 'This is a description.';
+import { useState } from 'react';
+
 export default function Home() {
-  const [a, setA] = useState(1);
-  useEffect(() => {
-    console.log(a);
-  }, [a]);
+  const [count, setCount] = useState(0);
   return (
-    <div className="text-red-300">
-      <span>1aa</span>
-      <Space wrap>
-        <Button type="primary">Primary Button</Button>
-        <Button>Default Button</Button>
-        <Button type="dashed">Dashed Button</Button>
-        <Button type="text">Text Button</Button>
-        <Button type="link">Link Button</Button>
-      </Space>
-      <Steps
-        current={1}
-        items={[
-          {
-            title: 'Finished',
-            description,
-          },
-          {
-            title: 'In Progress',
-            description,
-            subTitle: 'Left 00:00:08',
-          },
-          {
-            title: 'Waiting',
-            description,
-          },
-        ]}
-      />
+    <div className="flex h-[100vh] items-center justify-center">
+      <div className="flex items-center gap-x-3">
+        <button onClick={() => setCount(count - 1)} type="button">
+          减
+        </button>
+        <div>{count}</div>
+        <button onClick={() => setCount(count + 1)} type="button">
+          加
+        </button>
+      </div>
     </div>
   );
 }

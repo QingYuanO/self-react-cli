@@ -1,16 +1,16 @@
 const path = require('path');
 
-//https://webpack.docschina.org/plugins/html-webpack-plugin/#root
+// https://webpack.docschina.org/plugins/html-webpack-plugin/#root
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//https://webpack.docschina.org/plugins/mini-css-extract-plugin#root
+// https://webpack.docschina.org/plugins/mini-css-extract-plugin#root
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/
+// https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-//https://webpack.docschina.org/plugins/terser-webpack-plugin/
+// https://webpack.docschina.org/plugins/terser-webpack-plugin/
 const TerserWebpackPlugin = require('terser-webpack-plugin');
-const common = require('./webpack.common');
-
 const { merge } = require('webpack-merge');
+
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
   output: {

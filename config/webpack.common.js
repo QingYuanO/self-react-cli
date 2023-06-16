@@ -1,18 +1,18 @@
 const path = require('path');
-//https://webpack.docschina.org/plugins/eslint-webpack-plugin/
+// https://webpack.docschina.org/plugins/eslint-webpack-plugin/
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
-//https://webpack.docschina.org/plugins/copy-webpack-plugin#root
+// https://webpack.docschina.org/plugins/copy-webpack-plugin#root
 const CopyPlugin = require('copy-webpack-plugin');
-//https://webpack.docschina.org/plugins/mini-css-extract-plugin#root
+// https://webpack.docschina.org/plugins/mini-css-extract-plugin#root
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const WebpackBar = require('webpackbar');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { IS_DIV } = require('./constant');
 
-const getStyleLoaders = preProcessor => {
-  return [
+const getStyleLoaders = preProcessor =>
+  [
     !IS_DIV ? MiniCssExtractPlugin.loader : 'style-loader',
     'css-loader',
     {
@@ -28,7 +28,6 @@ const getStyleLoaders = preProcessor => {
 
     preProcessor,
   ].filter(Boolean);
-};
 
 module.exports = {
   entry: './src/index.tsx',
@@ -44,16 +43,21 @@ module.exports = {
         use: getStyleLoaders('less-loader'),
       },
       {
-        test: /\.(png|jpe?g|gif|webp|svg)$/,
-        //webpack内置处理文件资源的功能
+        test: /\.(png|jpe?g|gif|webp)$/,
+        // webpack内置处理文件资源的功能
         type: 'asset',
         parser: {
           dataUrlCondition: {
-            //小于10k的图片转为base64
-            //优点：减少请求数量 //缺点：增加文件体积
+            // 小于10k的图片转为base64
+            // 优点：减少请求数量 //缺点：增加文件体积
             maxSize: 10 * 1024,
           },
         },
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: [{ loader: '@svgr/webpack', options: { icon: true } }],
       },
       {
         test: /\.(ttf|woff2?|map4|map3|avi)$/,
@@ -76,6 +80,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.jsx', '.js', '.json', '.tsx', '.ts'], // 自动补全文件扩展名，让jsx可以使用
+    alias: {
+      '@/src': path.resolve(__dirname, '../src'),
+    },
   },
   plugins: [
     new ESLintWebpackPlugin({
@@ -102,12 +109,12 @@ module.exports = {
         },
       ],
     }),
-    //配置webpack打包进度
+    // 配置webpack打包进度
     new WebpackBar({
       name: IS_DIV ? 'run' : 'build',
       color: IS_DIV ? '#00b2a9' : '#ee6139',
     }),
-    //编译时进行 typescript 类型检测
+    // 编译时进行 typescript 类型检测
     // new ForkTsCheckerWebpackPlugin({
     //   typescript: {
     //     configFile: path.resolve(__dirname, '../tsconfig.json'),

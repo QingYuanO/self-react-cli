@@ -24,7 +24,7 @@
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "6",
+    "react-router-dom": "6.13.0",
     "tailwind-merge": "^1.13.2",
     "ts-pattern": "^5.0.1",
     "use-immer": "^0.9.0",

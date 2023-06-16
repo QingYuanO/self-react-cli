@@ -63,12 +63,12 @@ module.exports = {
         type: 'asset/resource',
       },
       {
-        test: /\.(jsx|js|tsx|ts)$/,
-        include: path.resolve(__dirname, '../src'),
+        test: /\.[jt]sx?$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          cacheDirectory: true,
-          cacheCompression: false,
+          // cacheDirectory: true,
+          // cacheCompression: false,
           plugins: [
             // "@babel/plugin-transform-runtime", // presets中包含了
             IS_DIV && require.resolve('react-refresh/babel'), // 开启js的HMR功能
@@ -84,13 +84,6 @@ module.exports = {
     },
   },
   plugins: [
-    new ESLintWebpackPlugin({
-      // 指定检查文件的根目录
-      context: path.resolve(__dirname, '../src'),
-      exclude: "node_modules",
-      cache: true,
-      cacheLocation: path.resolve(__dirname, '..', 'node_modules/.cache/.eslintcache'),
-    }),
     new CopyPlugin({
       patterns: [
         {
@@ -108,6 +101,13 @@ module.exports = {
           },
         },
       ],
+    }),
+    new ESLintWebpackPlugin({
+      // 指定检查文件的根目录
+      context: path.resolve(__dirname, '../src'),
+      exclude: 'node_modules',
+      cache: true,
+      cacheLocation: path.resolve(__dirname, '..', 'node_modules/.cache/.eslintcache'),
     }),
     // 配置webpack打包进度
     new WebpackBar({

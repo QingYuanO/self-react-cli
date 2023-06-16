@@ -22,6 +22,7 @@ module.exports = merge(common, {
     new ReactRefreshWebpackPlugin(), // 解决js的HMR功能运行时全局变量的问题
   ],
   optimization: {
+    // 导致热更新失败
     splitChunks: {
       chunks: 'all',
     },

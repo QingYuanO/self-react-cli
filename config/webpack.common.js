@@ -25,7 +25,6 @@ const getStyleLoaders = preProcessor =>
         },
       },
     },
-
     preProcessor,
   ].filter(Boolean);
 
@@ -72,7 +71,7 @@ module.exports = {
           cacheCompression: false,
           plugins: [
             // "@babel/plugin-transform-runtime", // presets中包含了
-            IS_DIV ? 'react-refresh/babel' : '', // 开启js的HMR功能
+            IS_DIV && require.resolve('react-refresh/babel'), // 开启js的HMR功能
           ].filter(Boolean),
         },
       },
@@ -88,6 +87,7 @@ module.exports = {
     new ESLintWebpackPlugin({
       // 指定检查文件的根目录
       context: path.resolve(__dirname, '../src'),
+      exclude: "node_modules",
       cache: true,
       cacheLocation: path.resolve(__dirname, '..', 'node_modules/.cache/.eslintcache'),
     }),

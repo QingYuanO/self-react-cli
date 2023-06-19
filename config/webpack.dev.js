@@ -24,7 +24,7 @@ module.exports = merge(common, {
   optimization: {
     // 导致热更新失败
     splitChunks: {
-      chunks: 'all',
+      // chunks: 'all',
     },
     runtimeChunk: {
       name: entrypoint => `runtime~${entrypoint.name}`,

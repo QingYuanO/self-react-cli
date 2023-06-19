@@ -67,8 +67,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          // cacheDirectory: true,
-          // cacheCompression: false,
+          cacheDirectory: true,
+          cacheCompression: false,
           plugins: [
             // "@babel/plugin-transform-runtime", // presets中包含了
             IS_DIV && require.resolve('react-refresh/babel'), // 开启js的HMR功能

@@ -7,7 +7,7 @@ module.exports = {
   extends: ['airbnb', 'prettier'],
   plugins: ['jsx-a11y', 'import', 'react-hooks', 'react', 'prettier'],
   rules: {
-    // 'import/no-unresolved': [2, { commonjs: true, amd: true }], // 添加这个
+    'import/no-unresolved': [2, { commonjs: true, amd: true, caseSensitive: false }], // 添加这个
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/named': 2, // 添加这个
     'import/namespace': 2, // 添加这个

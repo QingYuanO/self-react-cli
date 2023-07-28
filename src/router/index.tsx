@@ -1,10 +1,39 @@
-import { createBrowserRouter, Outlet } from 'react-router-dom';
-import Layout from '@/src/layouts';
+import { createBrowserRouter, NonIndexRouteObject } from 'react-router-dom';
+import { ItemType, SubMenuType } from 'antd/es/menu/hooks/useItems';
+import { DashboardLayout } from '@/src/layouts';
 import Home from '@/src/pages/Home';
 import Login from '@/src/pages/Login';
-import { UserList } from '@/src/pages/User';
+import { UserDetail, UserList } from '@/src/pages/User';
 
 import App from '../app';
+
+export interface MenuRouteObject extends NonIndexRouteObject {
+  name?: string;
+  hideInMenu?: boolean;
+  hideChildrenInMenu?: boolean;
+  children?: MenuRouteObject[];
+}
+
+export const menuRouter: MenuRouteObject[] = [
+  { path: 'home', element: <Home />, name: '首页' },
+  {
+    path: 'user',
+    name: '用户管理',
+    children: [
+      {
+        path: 'list',
+        element: <UserList />,
+        name: '用户列表',
+      },
+      {
+        path: ':id',
+        element: <UserDetail />,
+        name: '用户详情',
+        hideInMenu: true,
+      },
+    ],
+  },
+];
 
 const router = createBrowserRouter(
   [
@@ -13,37 +42,69 @@ const router = createBrowserRouter(
       element: <App />,
       children: [
         {
-          path: '/login',
+          path: 'login',
           element: <Login />,
         },
         {
-          element: (
-            <Layout>
-              <Outlet />
-            </Layout>
-          ),
-
-          children: [
-            { path: '/home', element: <Home /> },
-            {
-              path: '/user',
-              children: [
-                {
-                  index: true,
-                  element: <div>1</div>,
-                },
-                {
-                  path: 'list',
-                  element: <UserList />,
-                },
-              ],
-            },
-          ],
+          element: <DashboardLayout />,
+          children: menuRouter,
         },
       ],
     },
   ],
   {}
 );
+
+export function formatMenu(data: MenuRouteObject[], parentPath: string = ''): ItemType<SubMenuType>[] {
+  return data.map(item => {
+    const path = parentPath ? `${parentPath}/${item.path}` : `/${item.path}` ?? '';
+    if (!item.hideInMenu && !item.hideChildrenInMenu && item.children) {
+      return {
+        ...item,
+        key: path,
+        label: item.name,
+        children: formatMenu(item.children, path).filter(i => !!i),
+      };
+    }
+
+    return item.hideInMenu
+      ? null
+      : {
+          ...item,
+          key: path,
+          label: item.name,
+        };
+  }) as (ItemType<SubMenuType> & MenuRouteObject)[];
+}
+
+// 将menu树状结构抹平
+function flattenMenu(menuData: MenuRouteObject[], parentPath: string = '') {
+  return menuData.reduce((t, c) => {
+    const path = parentPath ? `${parentPath}/${c.path}` : `/${c.path}` ?? '';
+    if (c.children) {
+      return [
+        ...t,
+        {
+          ...c,
+          key: path,
+          label: c.name,
+        },
+        ...flattenMenu(c.children, path),
+      ];
+    }
+    return [
+      ...t,
+      {
+        ...c,
+        key: path,
+        label: c.name,
+      },
+    ];
+  }, [] as (ItemType<SubMenuType> & MenuRouteObject)[]);
+}
+
+export const menu = formatMenu(menuRouter);
+
+export const flattenMenuData = flattenMenu(menuRouter) as (ItemType<SubMenuType> & MenuRouteObject)[];
 
 export default router;

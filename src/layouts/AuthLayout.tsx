@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AuthLayout({ children }: PropsWithChildren<{}>) {
-  const [isLogin, ] = useState(true);
+  const [isLogin] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function AuthLayout({ children }: PropsWithChildren<{}>) {
     }
   }, [isLogin]);
 
-  return <div>{isLogin && children}</div>;
+  return isLogin ? children : null;
 }
 
 export default AuthLayout;

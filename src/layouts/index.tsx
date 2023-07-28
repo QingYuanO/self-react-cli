@@ -1,11 +1,5 @@
-import { PropsWithChildren } from 'react';
 
 import AuthLayout from './AuthLayout';
+import DashboardLayout from './DashboardLayout';
 
-export default function Layout({ children }: PropsWithChildren<{}>) {
-  return (
-    <AuthLayout>
-      <div className="bg-blue-300">{children}</div>
-    </AuthLayout>
-  );
-}
+export { AuthLayout, DashboardLayout };
